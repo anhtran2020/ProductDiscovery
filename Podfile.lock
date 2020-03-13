@@ -1,0 +1,58 @@
+PODS:
+  - Alamofire (5.0.2)
+  - Differentiator (4.0.1)
+  - IQKeyboardManagerSwift (6.5.5)
+  - Kingfisher (5.13.2):
+    - Kingfisher/Core (= 5.13.2)
+  - Kingfisher/Core (5.13.2)
+  - MBProgressHUD (1.1.0)
+  - RxCocoa (5.0.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - RxRelay (5.0.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.1)
+  - Swinject (2.7.1)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.0.0-rc.3)
+  - IQKeyboardManagerSwift
+  - Kingfisher (~> 5.0)
+  - MBProgressHUD (~> 1.1.0)
+  - RxCocoa (~> 5)
+  - RxDataSources
+  - RxSwift (~> 5)
+  - Swinject
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Differentiator
+    - IQKeyboardManagerSwift
+    - Kingfisher
+    - MBProgressHUD
+    - RxCocoa
+    - RxDataSources
+    - RxRelay
+    - RxSwift
+    - Swinject
+
+SPEC CHECKSUMS:
+  Alamofire: 3ba7a4db18b4f62c4a1c0e1cb39d7f3d52e10ada
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
+  IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
+  Kingfisher: d342c8354c10c3d85a27d6d4c42c41285924b898
+  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
+  RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
+  RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
+  Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
+
+PODFILE CHECKSUM: b8dc26c8bfb5650e48a78df4d75848f3b2c09f49
+
+COCOAPODS: 1.8.3
