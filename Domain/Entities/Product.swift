@@ -22,7 +22,7 @@ public struct Product {
     public let totalAvailable: Int?
     public let isBundle: Bool
     public let bundleProducts: String?
-    public let parentBundles: String?
+    public let parentBundles: [ParentBundle]?
     public let totalAvailableByStocks: [TotalAvailableByStocks]
     public let displayName: String
     public let color: ProductColor
@@ -37,7 +37,17 @@ public struct Product {
     public let rating: Rating
     public let allActiveFlashSales: [String]
     
-    public init(sku: String, name: String, url: String, seller: Seller, brand: Brand, status: ProductStatus, objective: ProductObjective, productType: ProductType, images: [ProductImage], price: Price, productLine: ProductLine, stocks: [String], totalAvailable: Int?, isBundle: Bool, bundleProducts: String?, parentBundles: String?, totalAvailableByStocks: [TotalAvailableByStocks], displayName: String, color: ProductColor, tags: [String], promotionPrices: [PromotionPrices], promotions: [String], flashSales: [String], attributeSet: AttributeSet, categories: [ProductCategory], magentoId: Int?, seoInfo: SeoInfo, rating: Rating, allActiveFlashSales: [String]) {
+    public var discount: Int {
+        let supplierPrice = price.supplierSalePrice ?? 0
+        let sellPrice = price.sellPrice ?? 0
+        var discount = 0
+        if sellPrice > 0 && sellPrice > supplierPrice {
+            discount = Int((abs(sellPrice - supplierPrice)/sellPrice)*100)
+        }
+        return discount
+    }
+    
+    public init(sku: String, name: String, url: String, seller: Seller, brand: Brand, status: ProductStatus, objective: ProductObjective, productType: ProductType, images: [ProductImage], price: Price, productLine: ProductLine, stocks: [String], totalAvailable: Int?, isBundle: Bool, bundleProducts: String?, parentBundles: [ParentBundle]?, totalAvailableByStocks: [TotalAvailableByStocks], displayName: String, color: ProductColor, tags: [String], promotionPrices: [PromotionPrices], promotions: [String], flashSales: [String], attributeSet: AttributeSet, categories: [ProductCategory], magentoId: Int?, seoInfo: SeoInfo, rating: Rating, allActiveFlashSales: [String]) {
         self.sku = sku
         self.name = name
         self.url = url
@@ -271,5 +281,19 @@ public struct TotalAvailableByStocks {
     public init(type: String, total: Double) {
         self.type = type
         self.total = total
+    }
+}
+
+//MARK: - ParentBundle
+
+public struct ParentBundle: Decodable {
+    let sku: String?
+    let name: String?
+    let displayName: String?
+    
+    public init(sku: String?, name: String?, displayName: String?) {
+        self.sku = sku
+        self.name = name
+        self.displayName = displayName
     }
 }

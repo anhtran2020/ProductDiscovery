@@ -8,6 +8,6 @@
 
 import RxSwift
 
-public protocol ProductServiceable {
+public protocol ProductServiceType {
     func fetchProducts(query: String, page: Int) -> Single<[Product]>
 }

@@ -22,6 +22,7 @@ target 'ProductDiscovery' do
   pod 'MBProgressHUD', '~> 1.1.0'
   pod 'IQKeyboardManagerSwift'
   pod 'Swinject'
+  pod 'CRRefresh'
 end
 
 target 'Domain' do

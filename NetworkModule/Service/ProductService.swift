@@ -17,7 +17,7 @@ public struct ProductService {
     }
 }
 
-extension ProductService: ProductServiceable {
+extension ProductService: ProductServiceType {
     
     public func fetchProducts(query: String, page: Int) -> Single<[Product]> {
         return network

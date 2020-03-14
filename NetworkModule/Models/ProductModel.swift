@@ -24,7 +24,7 @@ struct ProductModel: Decodable {
     let totalAvailable: Int?
     let isBundle: Bool
     let bundleProducts: String?
-    let parentBundles: String?
+    let parentBundles: [ParentBundleModel]?
     let totalAvailableByStocks: [TotalAvailableByStocksModel]
     let displayName: String
     let color: ProductColorModel
@@ -43,7 +43,7 @@ struct ProductModel: Decodable {
 extension ProductModel: DomainConvertible {
     
     func asDomain() -> Product {
-        return Product(sku: sku, name: name, url: url, seller: seller.asDomain(), brand: brand.asDomain(), status: status.asDomain(), objective: objective.asDomain(), productType: productType.asDomain(), images: images.asDomain(), price: price.asDomain(), productLine: productLine.asDomain(), stocks: stocks, totalAvailable: totalAvailable, isBundle: isBundle, bundleProducts: bundleProducts, parentBundles: parentBundles, totalAvailableByStocks: totalAvailableByStocks.asDomain(), displayName: displayName, color: color.asDomain(), tags: tags, promotionPrices: promotionPrices.asDomain(), promotions: promotions, flashSales: flashSales, attributeSet: attributeSet.asDomain(), categories: categories.asDomain(), magentoId: magentoId, seoInfo: seoInfo.asDomain(), rating: rating.asDomain(), allActiveFlashSales: allActiveFlashSales)
+        return Product(sku: sku, name: name, url: url, seller: seller.asDomain(), brand: brand.asDomain(), status: status.asDomain(), objective: objective.asDomain(), productType: productType.asDomain(), images: images.asDomain(), price: price.asDomain(), productLine: productLine.asDomain(), stocks: stocks, totalAvailable: totalAvailable, isBundle: isBundle, bundleProducts: bundleProducts, parentBundles: parentBundles?.asDomain(), totalAvailableByStocks: totalAvailableByStocks.asDomain(), displayName: displayName, color: color.asDomain(), tags: tags, promotionPrices: promotionPrices.asDomain(), promotions: promotions, flashSales: flashSales, attributeSet: attributeSet.asDomain(), categories: categories.asDomain(), magentoId: magentoId, seoInfo: seoInfo.asDomain(), rating: rating.asDomain(), allActiveFlashSales: allActiveFlashSales)
     }
 }
 
@@ -251,5 +251,19 @@ public struct TotalAvailableByStocksModel: Decodable {
 extension TotalAvailableByStocksModel: DomainConvertible {
     public func asDomain() -> TotalAvailableByStocks {
         return TotalAvailableByStocks(type: type, total: total)
+    }
+}
+
+//MARK: - ParentBundleModel
+
+public struct ParentBundleModel: Decodable {
+    let sku: String?
+    let name: String?
+    let displayName: String?
+}
+
+extension ParentBundleModel: DomainConvertible {
+    public func asDomain() -> ParentBundle {
+        return ParentBundle(sku: sku, name: name, displayName: displayName)
     }
 }

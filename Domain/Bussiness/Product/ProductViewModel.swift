@@ -16,7 +16,7 @@ public enum ReloadAction {
 
 public class ProductViewModel {
 
-    var service: ProductServiceable
+    var service: ProductServiceType
     var pageNumber = 1
     var disposeBag = DisposeBag()
     
@@ -27,7 +27,7 @@ public class ProductViewModel {
     public var loadingMoreActivity = PublishSubject<Bool>()
     public var errorsTracker = PublishSubject<DomainError>()
     
-    public init(service: ProductServiceable) {
+    public init(service: ProductServiceType) {
         self.service = service
     }
     
@@ -40,48 +40,24 @@ public class ProductViewModel {
             pageNumber = 1
             service.fetchProducts(query: "", page: pageNumber)
                     .trackActivity("reloading", with: activityTracker)
-                    .trackError(errorTracker).asObservable().bind(to: reloadBinder).disposed(by: disposeBag)
+                    .trackError(errorTracker)
+                    .asObservable()
+                    .bind(to: reloadBinder)
+                    .disposed(by: disposeBag)
             
+            errorTracker.asDomain().bind(to: reloadErrorBinder).disposed(by: disposeBag)
             activityTracker.status(for: "reloading").bind(to: reloadingActivity).disposed(by: disposeBag)
         case .loadMore:
             service.fetchProducts(query: "", page: pageNumber)
                     .trackActivity("loadingMore", with: activityTracker)
                     .trackError(errorTracker)
                     .asObservable()
-                    .bind(to: reloadBinder).disposed(by: disposeBag)
-            
+                    .bind(to: loadMoreBinder)
+                    .disposed(by: disposeBag)
+
+            errorTracker.asDomain().bind(to: loadMoreErrorBinder).disposed(by: disposeBag)
             activityTracker.status(for: "loadingMore").bind(to: loadingMoreActivity).disposed(by: disposeBag)
-        }
-        
-        errorTracker.asDomain().bind(to: errorsTracker).disposed(by: disposeBag)
-    }
-    
-    public func reloadProducts() -> Single<[Product]> {
-        let errorTracker = ErrorTracker()
-        let activityTracker = ActivityTracker<String>()
-        pageNumber = 0
-        
-        let result = service.fetchProducts(query: "", page: pageNumber)
-                        .trackActivity("reloading", with: activityTracker)
-                        .trackError(errorTracker)
-        
-        errorTracker.asDomain().bind(to: errorsTracker).disposed(by: disposeBag)
-        activityTracker.status(for: "reloading").bind(to: reloadingActivity).disposed(by: disposeBag)
-        return result
-    }
-    
-    public func loadMoreProducts() -> Single<[Product]> {
-        let errorTracker = ErrorTracker()
-        let activityTracker = ActivityTracker<String>()
-        pageNumber += 1
-        
-        let result = service.fetchProducts(query: "", page: pageNumber)
-                        .trackActivity("loadingMore", with: activityTracker)
-                        .trackError(errorTracker)
-        
-        errorTracker.asDomain().bind(to: errorsTracker).disposed(by: disposeBag)
-        activityTracker.status(for: "loadingMore").bind(to: loadingMoreActivity).disposed(by: disposeBag)
-        return result
+        }        
     }
     
     private var reloadBinder: Binder<[Product]> {
@@ -91,11 +67,23 @@ public class ProductViewModel {
         }
     }
     
+    private var reloadErrorBinder: Binder<DomainError> {
+        return Binder(self) { (target, error) in
+            target.errorsTracker.onNext(error)
+        }
+    }
+    
     private var loadMoreBinder: Binder<[Product]> {
         return Binder(self) { (target, results) in
             let allProducts = target.products.allValue ?? []
             target.products.onNext(allProducts + results)
             target.pageNumber += 1
+        }
+    }
+    
+    private var loadMoreErrorBinder: Binder<DomainError> {
+        return Binder(self) { (target, error) in
+            target.errorsTracker.onNext(error)
         }
     }
 }

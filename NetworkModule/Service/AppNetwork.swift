@@ -17,7 +17,7 @@ public class AppNetwork: Network {
 
 extension AppNetwork {
     
-    public func productService() -> ProductServiceable {
+    public func productService() -> ProductServiceType {
         return ProductService(network: self)
     }
 }
