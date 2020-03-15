@@ -22,5 +22,10 @@ struct ViewModelAssembly: Assembly {
             let service = resolver.resolve(ProductServiceType.self)
             return SearchViewModel(service: service!)
         }
+        
+        container.register(ProductDetailViewModel.self) { (resolver: Resolver, product: Product) in
+            let service = resolver.resolve(ProductServiceType.self)
+            return ProductDetailViewModel(service: service!, product: product)
+        }
     }
 }

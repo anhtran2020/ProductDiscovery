@@ -13,4 +13,8 @@ extension Double {
     var formattedWithDots: String {
         return Formatter.withSeparator.string(for: self) ?? ""
     }
+    
+    var formattedWithDotsWithDefaultUnit: String {
+        return (Formatter.withSeparator.string(for: self) ?? "0") + " đ"
+    }
 }

@@ -10,6 +10,7 @@ import UIKit
 import Swinject
 import RxSwift
 import RxCocoa
+import Domain
 
 class ProductCoordinator: BaseCoordinator {
     
@@ -31,6 +32,7 @@ class ProductCoordinator: BaseCoordinator {
         window.makeKeyAndVisible()
         
         productVC.showSearchBar.bind(to: showSearchScreenBinder).disposed(by: disposeBag)
+        productVC.showDetailAction.bind(to: showProductDetailBinder).disposed(by: disposeBag)
     }
 }
 
@@ -41,14 +43,27 @@ extension ProductCoordinator {
             target.showSearchScreen()
         }
     }
+    
+    private var showProductDetailBinder: Binder<Product> {
+        return Binder(self) { (target, product) in
+            target.showProductDetailScreen(product)
+        }
+    }
 }
 
 extension ProductCoordinator {
     
     private func showSearchScreen() {
-        let searchCoordinator = SearchCoordinator(presenter: navigationController)
-        searchCoordinator.start()
+        let coordinator = SearchCoordinator(presenter: navigationController)
+        coordinator.start()
         
-        handleStore(coordinator: searchCoordinator)
+        handleStore(coordinator: coordinator)
+    }
+    
+    private func showProductDetailScreen(_ product: Product) {
+        let coordinator = ProductDetailCoordinator(navigationController: navigationController, product: product)
+        coordinator.start()
+        
+        handleStore(coordinator: coordinator)
     }
 }

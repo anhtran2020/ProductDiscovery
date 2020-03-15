@@ -17,10 +17,12 @@ class SearchViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UITextField!
     @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     
     var viewModel: SearchViewModel!
     
     var backAction = PublishRelay<Void>()
+    var showDetailAction = PublishRelay<Product>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,8 @@ class SearchViewController: BaseViewController {
         dimBackgroundColor()
         searchBar.becomeFirstResponder()
         tableView.backgroundView = UIControl()
+        headerViewHeightConstraint.constant = HeaderViewConstant.height + view.windowSafeAreaInsets.top
+        
         tableView.cr.addFootRefresh { [weak self] in
             self?.loadMore()
         }
@@ -57,6 +61,7 @@ class SearchViewController: BaseViewController {
             cell.configCell(product)
         }.disposed(by: disposeBag)
         
+        tableView.rx.modelSelected(Product.self).bind(to: showDetailAction).disposed(by: disposeBag)
         viewModel.errorsTracker.bind(to: errorBinder).disposed(by: disposeBag)
         viewModel.loadingMoreActivity.bind(to: endLoadingMoreBinder).disposed(by: disposeBag)
         (tableView.backgroundView as? UIControl)?.rx.controlEvent(.touchUpInside).bind(to: tapBackgroundBinder).disposed(by: disposeBag)

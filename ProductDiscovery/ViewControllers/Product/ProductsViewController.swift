@@ -17,9 +17,11 @@ import Swinject
 class ProductViewController: BaseViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     
     var viewModel: ProductViewModel!
     var showSearchBar = PublishRelay<Void>()
+    var showDetailAction = PublishRelay<Product>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +41,8 @@ class ProductViewController: BaseViewController {
     
     private func setupView() {
         self.navigationController?.navigationBar.isHidden = true
+        headerViewHeightConstraint.constant = HeaderViewConstant.height + view.windowSafeAreaInsets.top
+        print(view.windowSafeAreaInsets)
         
         tableView.cr.addHeadRefresh { [weak self] in
             self?.viewModel.fetchProduct(action: .reload)
@@ -64,6 +68,8 @@ extension ProductViewController {
                 .items(cellIdentifier: ProductCell.identifier, cellType: ProductCell.self)) { _, product, cell in
             cell.configCell(product)
         }.disposed(by: disposeBag)
+        
+        tableView.rx.modelSelected(Product.self).bind(to: showDetailAction).disposed(by: disposeBag)
 
         viewModel.errorsTracker.bind(to: errorBinder).disposed(by: disposeBag)
         viewModel.reloadingActivity.bind(to: endReloadingHUDBinder).disposed(by: disposeBag)

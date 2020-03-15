@@ -24,5 +24,11 @@ struct ViewControllerAssembly: Assembly {
             searchVC.viewModel = resolver.resolve(SearchViewModel.self)
             return searchVC
         }
+        
+        container.register(ProductDetailViewController.self) { (resolver: Resolver, product: Product) in
+            let detailVC = UIViewController.instantiateViewController(fromStoryboard: .product, ofType: ProductDetailViewController.self)
+            detailVC.viewModel = resolver.resolve(ProductDetailViewModel.self, argument: product)
+            return detailVC
+        }
     }
 }

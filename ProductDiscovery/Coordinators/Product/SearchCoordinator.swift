@@ -7,15 +7,17 @@
 //
 
 import UIKit
-import Swinject
+import Domain
 import RxSwift
 import RxCocoa
+import Swinject
 
 class SearchCoordinator: BaseCoordinator {
     
-    var presenter: UINavigationController?
+    var presenter: BaseNavigationController?
+    var navigationController: BaseNavigationController!
     
-    init(presenter: UINavigationController?) {
+    init(presenter: BaseNavigationController?) {
         self.presenter = presenter
     }
 
@@ -24,14 +26,15 @@ class SearchCoordinator: BaseCoordinator {
             return
         }
         
-        let navigationController = BaseNavigationController(rootViewController: searchVC)
+        navigationController = BaseNavigationController(rootViewController: searchVC)
         navigationController.setNavigationBarHidden(true, animated: false)
         navigationController.providesPresentationContextTransitionStyle = true
         navigationController.modalPresentationStyle = .overFullScreen
         navigationController.modalTransitionStyle = .crossDissolve
-        presenter?.present(navigationController, animated: true, completion: nil)
+        self.presenter?.present(navigationController, animated: true, completion: nil)
         
         searchVC.backAction.bind(to: backActionBinder).disposed(by: disposeBag)
+        searchVC.showDetailAction.bind(to: showProductDetailBinder).disposed(by: disposeBag)
     }
 }
 
@@ -39,8 +42,24 @@ extension SearchCoordinator {
     
     var backActionBinder: Binder<Void> {
         return Binder(self) { (target, _) in
-            target.presenter?.dismiss(animated: true, completion: nil)
+            target.navigationController?.dismiss(animated: true, completion: nil)
             target.isCompleted?()
         }
+    }
+    
+    private var showProductDetailBinder: Binder<Product> {
+        return Binder(self) { (target, product) in
+            target.showProductDetailScreen(product)
+        }
+    }
+}
+
+extension SearchCoordinator {
+    
+    private func showProductDetailScreen(_ product: Product) {
+        let coordinator = ProductDetailCoordinator(navigationController: navigationController, product: product)
+        coordinator.start()
+        
+        handleStore(coordinator: coordinator)
     }
 }

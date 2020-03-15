@@ -38,8 +38,8 @@ public struct Product {
     public let allActiveFlashSales: [String]
     
     public var discount: Int {
-        let supplierPrice = price.supplierSalePrice ?? 0
-        let sellPrice = price.sellPrice ?? 0
+        let supplierPrice = price.supplierSalePrice
+        let sellPrice = price.sellPrice
         var discount = 0
         if sellPrice > 0 && sellPrice > supplierPrice {
             discount = Int((abs(sellPrice - supplierPrice)/sellPrice)*100)
@@ -159,12 +159,12 @@ public struct ProductImage {
 //MARK: - Price
 
 public struct Price {
-    public let supplierSalePrice: Double?
-    public let sellPrice: Double?
+    public let supplierSalePrice: Double
+    public let sellPrice: Double
     
     public init(supplierSalePrice: Double?, sellPrice: Double?) {
-        self.supplierSalePrice = supplierSalePrice
-        self.sellPrice = sellPrice
+        self.supplierSalePrice = supplierSalePrice ?? 0
+        self.sellPrice = sellPrice ?? 0
     }
 }
 

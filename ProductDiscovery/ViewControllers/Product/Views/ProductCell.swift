@@ -28,13 +28,13 @@ class ProductCell: UITableViewCell {
     }
 
     func configCell(_ product: Product) {
-        let supplierPrice = product.price.supplierSalePrice ?? 0
-        let price = product.price.sellPrice ?? 0
+        let supplierPrice = product.price.supplierSalePrice
+        let price = product.price.sellPrice
         
         imgView.kf.setImage(with: URL(string: product.images.first?.url ?? ""), placeholder: #imageLiteral(resourceName: "ic_placeholder"))
         nameLabel.text = product.name
         priceLabel.text = supplierPrice.formattedWithDots
-        sellPriceLabel.text = product.discount == 0 ? "" : "\(price.formattedWithDots)"
+        sellPriceLabel.text = product.discount == 0 ? "" : price.formattedWithDots
         discountButton.isHidden = product.discount == 0
         discountButton.setTitle("-\(product.discount)%", for: .normal)
     }

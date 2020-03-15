@@ -23,6 +23,8 @@ target 'ProductDiscovery' do
   pod 'IQKeyboardManagerSwift'
   pod 'Swinject'
   pod 'CRRefresh'
+  pod 'ImageSlideshow', '~> 1.8.3'
+  pod "ImageSlideshow/Kingfisher"
 end
 
 target 'Domain' do

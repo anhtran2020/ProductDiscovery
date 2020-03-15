@@ -94,3 +94,13 @@ extension UIView {
         }
     }
 }
+
+extension UIView {
+    
+    var windowSafeAreaInsets: UIEdgeInsets {
+        if let window = UIApplication.shared.keyWindow {
+            return window.safeAreaInsets
+        }
+        return self.safeAreaInsets
+    }
+}
