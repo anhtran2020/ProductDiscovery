@@ -36,6 +36,8 @@ public struct Product {
     public let seoInfo: SeoInfo
     public let rating: Rating
     public let allActiveFlashSales: [String]
+    public let attributeGroups: [AttributeGroup]
+    public var isExpanded = false
     
     public var discount: Int {
         let supplierPrice = price.supplierSalePrice
@@ -47,7 +49,7 @@ public struct Product {
         return discount
     }
     
-    public init(sku: String, name: String, url: String, seller: Seller, brand: Brand, status: ProductStatus, objective: ProductObjective, productType: ProductType, images: [ProductImage], price: Price, productLine: ProductLine, stocks: [String], totalAvailable: Int?, isBundle: Bool, bundleProducts: String?, parentBundles: [ParentBundle]?, totalAvailableByStocks: [TotalAvailableByStocks], displayName: String, color: ProductColor, tags: [String], promotionPrices: [PromotionPrices], promotions: [String], flashSales: [String], attributeSet: AttributeSet, categories: [ProductCategory], magentoId: Int?, seoInfo: SeoInfo, rating: Rating, allActiveFlashSales: [String]) {
+    public init(sku: String, name: String, url: String, seller: Seller, brand: Brand, status: ProductStatus, objective: ProductObjective, productType: ProductType, images: [ProductImage], price: Price, productLine: ProductLine, stocks: [String], totalAvailable: Int?, isBundle: Bool, bundleProducts: String?, parentBundles: [ParentBundle]?, totalAvailableByStocks: [TotalAvailableByStocks], displayName: String, color: ProductColor, tags: [String], promotionPrices: [PromotionPrices], promotions: [String], flashSales: [String], attributeSet: AttributeSet, categories: [ProductCategory], magentoId: Int?, seoInfo: SeoInfo, rating: Rating, allActiveFlashSales: [String], attributeGroups: [AttributeGroup] = []) {
         self.sku = sku
         self.name = name
         self.url = url
@@ -77,6 +79,7 @@ public struct Product {
         self.seoInfo = seoInfo
         self.rating = rating
         self.allActiveFlashSales = allActiveFlashSales
+        self.attributeGroups = attributeGroups
     }
 }
 
@@ -295,5 +298,17 @@ public struct ParentBundle: Decodable {
         self.sku = sku
         self.name = name
         self.displayName = displayName
+    }
+}
+
+//MARK: -
+
+public struct AttributeGroup: Decodable {
+    public var name: String
+    public var value: String
+    
+    public init(name: String?, value: String?) {
+        self.name = name ?? ""
+        self.value = value ?? ""
     }
 }

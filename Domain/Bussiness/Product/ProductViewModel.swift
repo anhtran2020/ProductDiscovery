@@ -16,9 +16,9 @@ public enum ReloadAction {
 
 public class ProductViewModel {
 
-    var service: ProductServiceType
-    var pageNumber = 1
-    var disposeBag = DisposeBag()
+    private var service: ProductServiceType
+    private var pageNumber = 1
+    private var disposeBag = DisposeBag()
     
     public var products = BehaviorSubject<[Product]>(value: [])
     public var moreProducts = PublishSubject<[Product]>()

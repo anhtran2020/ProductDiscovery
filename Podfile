@@ -18,11 +18,13 @@ target 'ProductDiscovery' do
   rxswift
   rxcocoa
   rxdatasources
-  pod 'Kingfisher', '~> 5.0'
-  pod 'MBProgressHUD', '~> 1.1.0'
-  pod 'IQKeyboardManagerSwift'
   pod 'Swinject'
   pod 'CRRefresh'
+  pod 'Parchment'
+  pod 'Kingfisher', '~> 5.0'
+  pod 'SnapKit', '~> 5.0.0'
+  pod 'IQKeyboardManagerSwift'
+  pod 'MBProgressHUD', '~> 1.1.0'
   pod 'ImageSlideshow', '~> 1.8.3'
   pod "ImageSlideshow/Kingfisher"
 end

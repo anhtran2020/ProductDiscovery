@@ -13,7 +13,6 @@ import ImageSlideshow
 
 class ProductDetailHeaderView: UICollectionReusableView {
 
-    @IBOutlet var contentView: UIView!
     @IBOutlet weak var sliderView: ImageSlideshow!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var codeLabel: UILabel!

@@ -10,4 +10,5 @@ import RxSwift
 
 public protocol ProductServiceType {
     func fetchProducts(query: String, page: Int) -> Single<[Product]>
+    func fetchProductDetail(sku: String) -> Single<Product>
 }

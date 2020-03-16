@@ -25,5 +25,12 @@ extension ProductService: ProductServiceType {
             .responseDecodable(of: [ProductModel].self, keyPath: "result.products")
             .mapToDomain()
     }
+    
+    public func fetchProductDetail(sku: String) -> Single<Product> {
+        return network
+            .request(with: Router.productDetail(sku: sku))
+            .responseDecodable(of: ProductDetailModel.self, keyPath: "result.product")
+            .mapToDomain()
+    }
 }
 

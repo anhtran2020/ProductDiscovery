@@ -11,7 +11,7 @@ import Alamofire
 enum Router: EndpointConvertible {
 
     case products(query: String, page: Int)
-    case detailProduct(productSku: Int)
+    case productDetail(sku: String)
     
     var method: HTTPMethod {
         switch self {
@@ -23,9 +23,9 @@ enum Router: EndpointConvertible {
     var path: String {
         switch self {
         case .products:
-            return "/api/search/"
-        case .detailProduct:
-            return "/api/products/"
+            return "api/search/"
+        case .productDetail(let sku):
+            return "api/products/\(sku)"
         }
     }
     
@@ -33,8 +33,8 @@ enum Router: EndpointConvertible {
         switch self {
         case .products(let query, let page):
             return ["channel": "pv_online", "q": query, "_page": page, "_limit": 20, "visitorId": "", "terminal": "CP01"]
-        case .detailProduct(let productSku):
-            return ["product_sku": productSku]
+        case .productDetail:
+            return ["channel": "pv_online", "terminal": "CP01"]
         }
     }
 }
