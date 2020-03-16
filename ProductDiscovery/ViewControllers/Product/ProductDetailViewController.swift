@@ -55,6 +55,7 @@ class ProductDetailViewController: BaseViewController {
         viewModel.totalPrice.bind(to: changePriceBinder).disposed(by: disposeBag)
         viewModel.relativeProducts.bind(to: loadedRelativeProductBinder).disposed(by: disposeBag)
         viewModel.reloadingActivity.bind(to: reloadingHUDBinder).disposed(by: disposeBag)
+        viewModel.errorsTracker.bind(to: errorBinder).disposed(by: disposeBag)
         
         attributeGroupView.changeHeightAction.bind(to: attributeChangeHeightBinder).disposed(by: disposeBag)
         productRelativeView.selectedProductAction.bind(to: showRelativeProductAction).disposed(by: disposeBag)
@@ -121,6 +122,12 @@ extension ProductDetailViewController {
             } else {
                 LoadingIndicator.shared.hide(for: target.view)
             }
+        }
+    }
+    
+    private var errorBinder: Binder<DomainError> {
+        return Binder(self) { (target, error) in
+            AlertView.shared.presentSimpleAlert(title: "Error", message: error.localizedDescription)
         }
     }
 }
