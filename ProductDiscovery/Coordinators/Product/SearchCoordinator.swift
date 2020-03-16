@@ -35,6 +35,8 @@ class SearchCoordinator: BaseCoordinator {
         
         searchVC.backAction.bind(to: backActionBinder).disposed(by: disposeBag)
         searchVC.showDetailAction.bind(to: showProductDetailBinder).disposed(by: disposeBag)
+        
+        handleStore(coordinator: self)
     }
 }
 

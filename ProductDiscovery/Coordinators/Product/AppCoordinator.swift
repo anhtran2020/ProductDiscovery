@@ -20,7 +20,5 @@ class AppCoordinator: BaseCoordinator {
     override func start() {
         let coordinator = ProductCoordinator(window: window)
         coordinator.start()
-        
-        handleStore(coordinator: coordinator)
     }
 }

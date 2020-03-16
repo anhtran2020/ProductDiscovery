@@ -33,6 +33,8 @@ class ProductCoordinator: BaseCoordinator {
         
         productVC.showSearchBar.bind(to: showSearchScreenBinder).disposed(by: disposeBag)
         productVC.showDetailAction.bind(to: showProductDetailBinder).disposed(by: disposeBag)
+        
+        handleStore(coordinator: self)
     }
 }
 
@@ -56,14 +58,10 @@ extension ProductCoordinator {
     private func showSearchScreen() {
         let coordinator = SearchCoordinator(presenter: navigationController)
         coordinator.start()
-        
-        handleStore(coordinator: coordinator)
     }
     
     private func showProductDetailScreen(_ product: Product) {
         let coordinator = ProductDetailCoordinator(navigationController: navigationController, product: product)
         coordinator.start()
-        
-        handleStore(coordinator: coordinator)
     }
 }

@@ -31,6 +31,8 @@ class ProductDetailCoordinator: BaseCoordinator {
         navigationController?.pushViewController(detailVC, animated: true)
         
         detailVC.backAction.bind(to: backActionBinder).disposed(by: disposeBag)
+        
+        handleStore(coordinator: self)
     }
 }
 
@@ -39,6 +41,7 @@ extension ProductDetailCoordinator {
     var backActionBinder: Binder<Void> {
         return Binder(self) { (target, _) in
             target.navigationController?.popViewController(animated: true)
+            target.isCompleted?()
         }
     }
 }
