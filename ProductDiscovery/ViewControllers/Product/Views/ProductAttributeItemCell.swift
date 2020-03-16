@@ -16,15 +16,17 @@ class ProductAttributeItemCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        contentView.layer.cornerRadius = 5
+        contentView.layer.masksToBounds = true
     }
     
     func configCell(attribute: AttributeGroup, indexPath: IndexPath) {
         titleLabel.text = attribute.name
         valueLabel.text = attribute.value
-        contentView.layer.cornerRadius = 5
-        contentView.layer.masksToBounds = true
+        
         if indexPath.row % 2 == 0 {
-            contentView.backgroundColor = .coolGrey
+            contentView.backgroundColor = .paleGrey
         } else {
             contentView.backgroundColor = .white
         }

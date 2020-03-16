@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductRelativeView" customModule="ProductDiscovery" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="jHI-fK-BVz" id="Dzo-VZ-b4E"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="1we-V5-G4Q"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="282"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sản phẩm cùng loại" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7q2-aM-UDw">
+                    <rect key="frame" x="12" y="12" width="120" height="16"/>
+                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="13"/>
+                    <color key="textColor" red="0.5607843137254902" green="0.58431372549019611" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="jHI-fK-BVz">
+                    <rect key="frame" x="0.0" y="44" width="414" height="222"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="12" id="bDs-HS-OUq">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="12" height="12"/>
+                        <size key="footerReferenceSize" width="12" height="12"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="slv-IK-ATg"/>
+                        <outlet property="delegate" destination="-1" id="9V5-wa-w88"/>
+                    </connections>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="7q2-aM-UDw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="4EE-cg-C4H"/>
+                <constraint firstItem="7q2-aM-UDw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="Imq-7w-bXG"/>
+                <constraint firstAttribute="bottom" secondItem="jHI-fK-BVz" secondAttribute="bottom" constant="16" id="Z8g-vF-hlV"/>
+                <constraint firstItem="jHI-fK-BVz" firstAttribute="top" secondItem="7q2-aM-UDw" secondAttribute="bottom" constant="16" id="dCi-A1-giJ"/>
+                <constraint firstItem="jHI-fK-BVz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="hGy-9q-dQF"/>
+                <constraint firstAttribute="trailing" secondItem="jHI-fK-BVz" secondAttribute="trailing" id="lRu-hT-iTW"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-110.14492753623189" y="34.821428571428569"/>
+        </view>
+    </objects>
+</document>

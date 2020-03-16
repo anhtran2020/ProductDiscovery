@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
+        <array key="SF-Pro-Text-Semibold.otf">
+            <string>SFProText-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProductCollectionViewCell" id="xQ0-7m-7Kb" customClass="ProductCollectionViewCell" customModule="ProductDiscovery" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="150" height="220"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="X7n-eX-ysS">
+                <rect key="frame" x="0.0" y="0.0" width="150" height="220"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GNj-aw-oin">
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="150" id="TRL-wa-QXv"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Màn hình LCD 31.5&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBK-B5-dHq">
+                        <rect key="frame" x="0.0" y="158" width="150" height="17"/>
+                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8.790.000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zRd-3H-mB8">
+                        <rect key="frame" x="0.0" y="179" width="71.5" height="17"/>
+                        <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
+                        <color key="textColor" red="0.91764705879999997" green="0.20392156859999999" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.970.000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OSf-sO-jVe">
+                        <rect key="frame" x="0.0" y="200" width="63" height="14.5"/>
+                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
+                        <color key="textColor" red="0.56078431370000004" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3bO-Dz-urI">
+                        <rect key="frame" x="68" y="200" width="32" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="064-FX-pGm"/>
+                            <constraint firstAttribute="height" constant="15" id="5Bh-F9-3XO"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="10"/>
+                        <state key="normal" title="-20%" backgroundImage="ic_discount">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="đ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBP-qq-Q6u">
+                        <rect key="frame" x="72.5" y="179" width="8" height="15"/>
+                        <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="12"/>
+                        <color key="textColor" red="0.91764705879999997" green="0.20392156859999999" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="GNj-aw-oin" firstAttribute="leading" secondItem="X7n-eX-ysS" secondAttribute="leading" id="85n-xn-rVF"/>
+                    <constraint firstItem="zRd-3H-mB8" firstAttribute="top" secondItem="RBK-B5-dHq" secondAttribute="bottom" constant="4" id="8nY-vc-MVV"/>
+                    <constraint firstAttribute="trailing" secondItem="GNj-aw-oin" secondAttribute="trailing" id="CdC-RO-FV8"/>
+                    <constraint firstItem="OSf-sO-jVe" firstAttribute="leading" secondItem="X7n-eX-ysS" secondAttribute="leading" id="EkR-am-mhl"/>
+                    <constraint firstItem="GNj-aw-oin" firstAttribute="leading" secondItem="X7n-eX-ysS" secondAttribute="leading" id="F8P-Xk-Mww"/>
+                    <constraint firstItem="OSf-sO-jVe" firstAttribute="top" secondItem="zRd-3H-mB8" secondAttribute="bottom" constant="4" id="FKx-w4-Dhl"/>
+                    <constraint firstItem="3bO-Dz-urI" firstAttribute="centerY" secondItem="OSf-sO-jVe" secondAttribute="centerY" id="JzP-yj-64L"/>
+                    <constraint firstItem="RBK-B5-dHq" firstAttribute="top" secondItem="GNj-aw-oin" secondAttribute="bottom" constant="8" id="KPf-mz-xPY"/>
+                    <constraint firstItem="zRd-3H-mB8" firstAttribute="leading" secondItem="X7n-eX-ysS" secondAttribute="leading" id="NDc-m0-wjZ"/>
+                    <constraint firstAttribute="trailing" secondItem="GNj-aw-oin" secondAttribute="trailing" id="Wiu-4E-asV"/>
+                    <constraint firstItem="TBP-qq-Q6u" firstAttribute="top" secondItem="zRd-3H-mB8" secondAttribute="top" id="aoN-LM-oic"/>
+                    <constraint firstItem="TBP-qq-Q6u" firstAttribute="leading" secondItem="zRd-3H-mB8" secondAttribute="trailing" constant="1" id="fX4-by-yff"/>
+                    <constraint firstAttribute="trailing" secondItem="RBK-B5-dHq" secondAttribute="trailing" id="fzK-st-0bB"/>
+                    <constraint firstItem="RBK-B5-dHq" firstAttribute="leading" secondItem="X7n-eX-ysS" secondAttribute="leading" id="gAm-9y-zJc"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="TBP-qq-Q6u" secondAttribute="trailing" id="hah-Vc-52D"/>
+                    <constraint firstItem="GNj-aw-oin" firstAttribute="top" secondItem="X7n-eX-ysS" secondAttribute="top" id="iSC-no-rd8"/>
+                    <constraint firstItem="3bO-Dz-urI" firstAttribute="leading" secondItem="OSf-sO-jVe" secondAttribute="trailing" constant="5" id="iyL-Wh-u89"/>
+                    <constraint firstItem="GNj-aw-oin" firstAttribute="top" secondItem="X7n-eX-ysS" secondAttribute="top" id="uHc-P6-XyG"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <size key="customSize" width="97" height="220"/>
+            <connections>
+                <outlet property="discountButton" destination="3bO-Dz-urI" id="YXN-cC-Irj"/>
+                <outlet property="imgView" destination="GNj-aw-oin" id="TEU-8x-ovY"/>
+                <outlet property="nameLabel" destination="RBK-B5-dHq" id="AyG-xF-Ovv"/>
+                <outlet property="priceLabel" destination="OSf-sO-jVe" id="68R-iH-ZZw"/>
+                <outlet property="sellPriceLabel" destination="zRd-3H-mB8" id="VTE-rj-8pj"/>
+            </connections>
+            <point key="canvasLocation" x="425" y="122"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="ic_discount" width="32" height="15"/>
+    </resources>
+</document>

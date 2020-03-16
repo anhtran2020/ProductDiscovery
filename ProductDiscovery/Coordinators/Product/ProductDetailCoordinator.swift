@@ -31,6 +31,7 @@ class ProductDetailCoordinator: BaseCoordinator {
         navigationController?.pushViewController(detailVC, animated: true)
         
         detailVC.backAction.bind(to: backActionBinder).disposed(by: disposeBag)
+        detailVC.showRelativeProductAction.bind(to: showRelativeProductBinder).disposed(by: disposeBag)
         
         handleStore(coordinator: self)
     }
@@ -43,5 +44,21 @@ extension ProductDetailCoordinator {
             target.navigationController?.popViewController(animated: true)
             target.isCompleted?()
         }
+    }
+    
+    var showRelativeProductBinder: Binder<Product> {
+        return Binder(self) { (target, product) in
+            target.showProductDetailScreen(product)
+        }
+    }
+}
+
+extension ProductDetailCoordinator {
+    
+    private func showProductDetailScreen(_ product: Product) {
+        let coordinator = ProductDetailCoordinator(navigationController: navigationController, product: product)
+        coordinator.start()
+        
+        handleStore(coordinator: coordinator)
     }
 }

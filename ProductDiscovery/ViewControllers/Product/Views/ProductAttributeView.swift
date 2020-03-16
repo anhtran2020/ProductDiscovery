@@ -13,9 +13,10 @@ import Parchment
 import SnapKit
 import Domain
 
-class ProductAttributeCell: UICollectionViewCell {
+class ProductAttributeView: UIView {
     
-    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var pagingContainerView: UIView!
     @IBOutlet weak var expandLabel: UILabel!
     @IBOutlet weak var expandImgView: UIImageView!
     @IBOutlet weak var gradientView: UIView!
@@ -23,7 +24,7 @@ class ProductAttributeCell: UICollectionViewCell {
     @IBOutlet weak var expandStackView: UIStackView!
     @IBOutlet weak var expandBgView: UIView!
     
-    var expandAction = PublishRelay<(CGFloat, Bool)>()
+    var changeHeightAction = PublishRelay<(CGFloat, Bool)>()
     
     private lazy var pagingViewController: PagingViewController = {
         let controller = PagingViewController()
@@ -39,42 +40,64 @@ class ProductAttributeCell: UICollectionViewCell {
     
     var product: Product?
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        initialize()
     }
     
-    func configCell(product: Product) {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        initialize()
+    }
+    
+    fileprivate func initialize() {
+        Bundle.main.loadNibNamed(String(describing: ProductAttributeView.self), owner: self, options: nil)
+        guard let content = contentView else { return }
+        content.frame = self.bounds
+        content.backgroundColor = .white
+        content.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.addSubview(content)
+        
+        setupViews()
+    }
+    
+    func bindData(_ product: Product) {
         self.product = product
         setupViews()
         pagingViewController.reloadData()
     }
     
     func setupViews() {
-        self.addSubview(pagingViewController.view)
-//        let gradientMaskLayer = CAGradientLayer()
-//        gradientMaskLayer.frame = gradientView.bounds
-//        gradientMaskLayer.colors = [UIColor.clear.cgColor, UIColor.white.cgColor]
-////        gradientMaskLayer.locations = [0, 0.1, 0.9, 1]
-//        gradientView.layer.mask = gradientMaskLayer
+        pagingContainerView.addSubview(pagingViewController.view)
+        let gradientMaskLayer = CAGradientLayer()
+        gradientMaskLayer.frame = gradientView.bounds
+        gradientMaskLayer.colors = [UIColor.clear.cgColor, UIColor.white.cgColor]
+        gradientView.layer.mask = gradientMaskLayer
         
-        expandButton.isHidden = !isShowExpandView()
-        expandStackView.isHidden = !isShowExpandView()
-        expandButton.isHidden = !isShowExpandView()
+        expandBgView.isHidden = !isShowExpandView()
+        gradientView.isHidden = !isShowExpandView()
+        
+        if !isShowExpandView() {
+            changeHeightAction.accept((maxHeightWithoutBottom(), false))
+        }
         
         pagingViewController.view.snp.makeConstraints { (maker) in
-            maker.top.leading.trailing.equalToSuperview()
-            maker.bottom.equalToSuperview().inset(42)
+            maker.top.leading.trailing.bottom.equalToSuperview()
         }
     }
     
     @IBAction func expandButtonTapped(_ sender: Any) {
-        let isExpanded = product?.isExpanded == true
-        let height = isExpanded ? designHeight() : maxHeight()
-        expandAction.accept((height, isExpanded))
+        expandButton.isSelected = !expandButton.isSelected
+        let height = expandButton.isSelected ? maxHeight() : designHeight()
+        changeHeightAction.accept((height, true))
+        
+        expandLabel.text = expandButton.isSelected ? "Hiển thị ít hơn" : "Hiển thị nhiều hơn"
+        expandImgView.image = expandButton.isSelected ? #imageLiteral(resourceName: "ic_unexpand") : #imageLiteral(resourceName: "ic_expand")
+        gradientView.isHidden = expandButton.isSelected
     }
 }
 
-extension ProductAttributeCell: PagingViewControllerDataSource {
+extension ProductAttributeView: PagingViewControllerDataSource {
 
     func numberOfViewControllers(in pagingViewController: PagingViewController) -> Int {
         return 3
@@ -93,27 +116,17 @@ extension ProductAttributeCell: PagingViewControllerDataSource {
 
 // MARK: - PagingViewControllerDelegate
 
-extension ProductAttributeCell: PagingViewControllerSizeDelegate {
+extension ProductAttributeView: PagingViewControllerSizeDelegate {
     
     func pagingViewController(_: PagingViewController, widthForPagingItem pagingItem: PagingItem, isSelected: Bool) -> CGFloat {
-        guard let item = pagingItem as? PagingIndexItem else { return 0 }
-
-        let insets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
-        let size = CGSize(width: CGFloat.greatestFiniteMagnitude, height: pagingViewController.menuItemSize.height)
-        let attributes = [NSAttributedString.Key.font: pagingViewController.font]
-
-        let rect = item.title.boundingRect(with: size,
-                                           options: .usesLineFragmentOrigin,
-                                           attributes: attributes,
-                                           context: nil)
-
-        return ceil(rect.width) + insets.left + insets.right
+        return UIScreen.main.bounds.width/3
     }
 }
 
 //MARK: Utilities
 
-extension ProductAttributeCell {
+extension ProductAttributeView {
+
     private func title(for index: Int) -> String {
         switch index {
         case 0:
@@ -128,10 +141,15 @@ extension ProductAttributeCell {
     }
     
     private func maxHeight() -> CGFloat {
+        let bottomHeight = expandBgView.frame.size.height
+        return maxHeightWithoutBottom() + bottomHeight
+    }
+    
+    private func maxHeightWithoutBottom() -> CGFloat {
         let menuHeight = pagingViewController.menuItemSize.height
         let contentHeight = CGFloat(product?.attributeGroups.count ?? 0)*CGFloat(35)
-        let bottomHeight = expandBgView.frame.size.height
-        return menuHeight + contentHeight + bottomHeight
+        let padding = CGFloat(10)
+        return menuHeight + contentHeight + 2*padding
     }
     
     private func designHeight() -> CGFloat {

@@ -17,21 +17,27 @@ class ProductDetailViewController: BaseViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var topQuantityLabel: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var quantityLabel: UILabel!
+    @IBOutlet weak var productHeaderView: ProductDetailHeaderView!
+    @IBOutlet weak var attributeGroupView: ProductAttributeView!
+    @IBOutlet weak var productRelativeView: ProductRelativeView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var productHeaderViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var attributeViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var productRelativeViewHeightConstraint: NSLayoutConstraint!
     
     var viewModel: ProductDetailViewModel!
     var backAction = PublishRelay<Void>()
-    var attributeCellHeight = CGFloat(238)
+    var showRelativeProductAction = PublishRelay<Product>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         addObservers()
         viewModel.fetchProductDetail()
+        viewModel.fetchRelativeProducts()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -45,81 +51,76 @@ class ProductDetailViewController: BaseViewController {
     private func addObservers() {
         backButton.rx.tap.bind(to: backAction).disposed(by: disposeBag)
         viewModel.productDetail.bind(to: reloadBinder).disposed(by: disposeBag)
+        viewModel.quantity.bind(to: changeQuantityBinder).disposed(by: disposeBag)
+        viewModel.totalPrice.bind(to: changePriceBinder).disposed(by: disposeBag)
+        viewModel.relativeProducts.bind(to: loadedRelativeProductBinder).disposed(by: disposeBag)
+        viewModel.reloadingActivity.bind(to: reloadingHUDBinder).disposed(by: disposeBag)
         
+        attributeGroupView.changeHeightAction.bind(to: attributeChangeHeightBinder).disposed(by: disposeBag)
+        productRelativeView.selectedProductAction.bind(to: showRelativeProductAction).disposed(by: disposeBag)
     }
     
     private func setupViews() {
         nameLabel.text = viewModel.product.name
-        priceLabel.text = viewModel.product.price.supplierSalePrice.formattedWithDotsWithDefaultUnit
+        priceLabel.text = viewModel.product.price.supplierSalePrice.formattedWithDotsAndDefaultUnit
         headerViewHeightConstraint.constant = HeaderViewConstant.height + view.windowSafeAreaInsets.top
         bottomViewHeightConstraint.constant = FooterViewConstant.height + view.windowSafeAreaInsets.bottom
+        productHeaderViewHeightConstraint.constant = (UIScreen.main.bounds.width * 492)/414
     }
     
     @IBAction func plusButtonTapped(_ sender: Any) {
-    
+        viewModel.plusQuantity()
     }
     
     @IBAction func minusButtonTapped(_ sender: Any) {
-    
+        viewModel.minusQuantity()
     }
 }
 
 extension ProductDetailViewController {
     
-    private var reloadBinder: Binder<Product> {
-        return Binder(self) { (target, _) in
-            target.collectionView.reloadData()
-        }
-    }
-    
-    private var expandCellBinder: Binder<(CGFloat, Bool)> {
+    private var attributeChangeHeightBinder: Binder<(CGFloat, Bool)> {
         return Binder(self) { (target, expand) in
-            target.attributeCellHeight = expand.0
-            target.viewModel.product.isExpanded = !expand.1
-            UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.9, options: UIView.AnimationOptions.curveEaseInOut, animations: {
-                  target.collectionView.reloadItems(at: [IndexPath(row: 0, section: 0)])
-                }, completion: { success in
-                    print("success")
-            })
-//            target.collectionView.reloadItems(at: [IndexPath(row: 0, section: 0)])
+            target.attributeViewHeightConstraint.constant = expand.0
+            if expand.1 {
+                UIView.animate(withDuration: 0.5) { target.view.layoutIfNeeded() }
+            }
         }
     }
-}
-
-extension ProductDetailViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+    
+    private var reloadBinder: Binder<Product> {
+        return Binder(self) { (target, product) in
+            target.productHeaderView.bindData(product)
+            target.attributeGroupView.bindData(product)
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(ofType: ProductAttributeCell.self, for: indexPath)
-        cell?.configCell(product: viewModel.product)
-        cell?.expandAction.bind(to: expandCellBinder).disposed(by: disposeBag)
-        return cell ?? UICollectionViewCell()
-    }
-        
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
-                                                                         withReuseIdentifier: ProductDetailHeaderView.identifier,
-                                                                         for: indexPath) as! ProductDetailHeaderView
-
-        headerView.bindData(viewModel.product)
- 
-        return headerView
-    }
-}
-
-extension ProductDetailViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: attributeCellHeight)
+    private var loadedRelativeProductBinder: Binder<[Product]> {
+        return Binder(self) { (target, products) in
+            target.productRelativeView.bindData(products: products)
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: (UIScreen.main.bounds.width * 492)/414)
+    private var changeQuantityBinder: Binder<Int> {
+        return Binder(self) { (target, quantity) in
+            target.quantityLabel.text = "\(quantity)"
+            target.topQuantityLabel.text = "\(quantity)"
+        }
+    }
+    
+    private var changePriceBinder: Binder<Double> {
+        return Binder(self) { (target, price) in
+            target.totalPriceLabel.text = price.formattedWithDotsAndDefaultUnit
+        }
+    }
+    
+    private var reloadingHUDBinder: Binder<Bool> {
+        return Binder(self) { (target, isReloading) in
+            if isReloading {
+                LoadingIndicator.shared.showAdd(to: target.view)
+            } else {
+                LoadingIndicator.shared.hide(for: target.view)
+            }
+        }
     }
 }

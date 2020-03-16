@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductAttributeView" customModule="ProductDiscovery" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="voh-ZP-ZAq"/>
+                <outlet property="expandBgView" destination="TVZ-qF-bmR" id="Djz-sL-peD"/>
+                <outlet property="expandButton" destination="R0o-0B-Cev" id="qb1-wy-G5k"/>
+                <outlet property="expandImgView" destination="cCC-lD-6S3" id="Wqa-TX-xzP"/>
+                <outlet property="expandLabel" destination="cJA-S7-hsn" id="qvx-7A-4hd"/>
+                <outlet property="expandStackView" destination="tee-te-iVV" id="heD-mi-ukM"/>
+                <outlet property="gradientView" destination="u3O-Pe-RH1" id="6vA-m6-9iY"/>
+                <outlet property="pagingContainerView" destination="7Gt-Fu-Yts" id="slG-ZE-G2H"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="238"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Gt-Fu-Yts">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="238"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TVZ-qF-bmR">
+                    <rect key="frame" x="0.0" y="196" width="414" height="42"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tee-te-iVV">
+                            <rect key="frame" x="139.5" y="6" width="135.5" height="30"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hiển thị nhiều hơn" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJA-S7-hsn">
+                                    <rect key="frame" x="0.0" y="0.0" width="111.5" height="30"/>
+                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="13"/>
+                                    <color key="textColor" red="0.1176470588" green="0.45882352939999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_expand" translatesAutoresizingMaskIntoConstraints="NO" id="cCC-lD-6S3">
+                                    <rect key="frame" x="111.5" y="0.0" width="24" height="30"/>
+                                </imageView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="135.5" id="DSx-wP-Q1U"/>
+                            </constraints>
+                        </stackView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R0o-0B-Cev">
+                            <rect key="frame" x="139.5" y="6" width="135.5" height="30"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal">
+                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="expandButtonTapped:" destination="-1" eventType="touchUpInside" id="wht-Fg-v5v"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="42" id="2zn-uc-OAb"/>
+                        <constraint firstItem="R0o-0B-Cev" firstAttribute="bottom" secondItem="tee-te-iVV" secondAttribute="bottom" id="3dD-6A-iPc"/>
+                        <constraint firstItem="tee-te-iVV" firstAttribute="centerX" secondItem="TVZ-qF-bmR" secondAttribute="centerX" id="Doj-69-zEe"/>
+                        <constraint firstItem="tee-te-iVV" firstAttribute="centerY" secondItem="TVZ-qF-bmR" secondAttribute="centerY" id="Dwc-vj-bAb"/>
+                        <constraint firstItem="R0o-0B-Cev" firstAttribute="top" secondItem="tee-te-iVV" secondAttribute="top" id="Nv1-uv-ZHN"/>
+                        <constraint firstItem="R0o-0B-Cev" firstAttribute="leading" secondItem="tee-te-iVV" secondAttribute="leading" id="Tsp-3Z-d1M"/>
+                        <constraint firstItem="R0o-0B-Cev" firstAttribute="trailing" secondItem="tee-te-iVV" secondAttribute="trailing" id="dFr-iY-sCR"/>
+                    </constraints>
+                </view>
+                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u3O-Pe-RH1">
+                    <rect key="frame" x="0.0" y="116" width="414" height="80"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="5dh-MQ-tzw"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                            <color key="value" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="startPointX">
+                            <real key="value" value="0.5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="startPointY">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="endPointX">
+                            <real key="value" value="0.5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="endPointY">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="7Gt-Fu-Yts" secondAttribute="bottom" id="9qT-AN-t4R"/>
+                <constraint firstItem="7Gt-Fu-Yts" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="EDZ-Xw-zBl"/>
+                <constraint firstItem="u3O-Pe-RH1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="L2f-wO-jmC"/>
+                <constraint firstItem="TVZ-qF-bmR" firstAttribute="top" secondItem="u3O-Pe-RH1" secondAttribute="bottom" id="V7d-Mo-6PY"/>
+                <constraint firstAttribute="trailing" secondItem="7Gt-Fu-Yts" secondAttribute="trailing" id="Vs4-W6-KBa"/>
+                <constraint firstAttribute="trailing" secondItem="u3O-Pe-RH1" secondAttribute="trailing" id="WN9-KW-2JG"/>
+                <constraint firstAttribute="bottom" secondItem="TVZ-qF-bmR" secondAttribute="bottom" id="XSR-o2-phZ"/>
+                <constraint firstItem="TVZ-qF-bmR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qfS-bL-cBG"/>
+                <constraint firstAttribute="trailing" secondItem="TVZ-qF-bmR" secondAttribute="trailing" id="ueq-Vo-Ytb"/>
+                <constraint firstItem="7Gt-Fu-Yts" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="zX8-Yd-g33"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="139" y="154"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_expand" width="24" height="24"/>
+    </resources>
+</document>

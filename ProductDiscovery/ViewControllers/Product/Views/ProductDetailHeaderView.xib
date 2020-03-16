@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
+        <array key="SF-Pro-Text-Semibold.otf">
+            <string>SFProText-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductDetailHeaderView" customModule="ProductDiscovery" customModuleProvider="target">
+            <connections>
+                <outlet property="codeLabel" destination="ktd-SH-3qN" id="KxD-hC-5gZ"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="S3g-L6-4NB"/>
+                <outlet property="discountButton" destination="iK4-9P-s3Z" id="trH-lj-5t1"/>
+                <outlet property="nameLabel" destination="vtO-rV-LU1" id="h6H-86-ZrQ"/>
+                <outlet property="sellPriceLabel" destination="jgh-Mi-qCf" id="dSH-16-n7F"/>
+                <outlet property="sliderView" destination="J7r-mX-8KE" id="W8m-Bl-NIb"/>
+                <outlet property="statusLabel" destination="hVs-FP-kZ0" id="vyW-MU-hXc"/>
+                <outlet property="supplierPriceLabel" destination="ALf-zR-2fP" id="l6U-w2-ja3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="492"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J7r-mX-8KE" customClass="ImageSlideshow" customModule="ImageSlideshow">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="366"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="J7r-mX-8KE" secondAttribute="height" multiplier="69:61" id="gm3-TE-qdM"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bộ vi xử lý/ CPU Core I7-7800X (3.50 GHz)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="vtO-rV-LU1">
+                    <rect key="frame" x="12" y="378" width="390" height="20"/>
+                    <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mã SP:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZY-JF-MA2">
+                    <rect key="frame" x="12" y="402" width="40" height="14"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="BLW-tR-i3C"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
+                    <color key="textColor" red="0.56078431370000004" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9187691276" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ktd-SH-3qN">
+                    <rect key="frame" x="56" y="402" width="70.5" height="14"/>
+                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
+                    <color key="textColor" red="0.1176470588" green="0.45882352939999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tạm hết hàng   " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVs-FP-kZ0" customClass="UIPaddingLabel" customModule="ProductDiscovery" customModuleProvider="target">
+                    <rect key="frame" x="12" y="424" width="87" height="22"/>
+                    <color key="backgroundColor" red="0.93333333330000001" green="0.94509803920000002" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="R3h-xd-XrH"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
+                    <color key="textColor" red="0.56078431370000004" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="rightInset">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.420.000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ALf-zR-2fP">
+                    <rect key="frame" x="12" y="454" width="96" height="20"/>
+                    <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="17"/>
+                    <color key="textColor" red="0.91764705879999997" green="0.20392156859999999" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12.970.000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgh-Mi-qCf">
+                    <rect key="frame" x="124" y="457" width="63" height="14"/>
+                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
+                    <color key="textColor" red="0.56078431370000004" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="đ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZG-2s-f7c">
+                    <rect key="frame" x="110" y="454" width="9" height="17"/>
+                    <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
+                    <color key="textColor" red="0.91764705879999997" green="0.20392156859999999" blue="0.1215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iK4-9P-s3Z">
+                    <rect key="frame" x="192" y="456.5" width="32" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="32" id="DzT-MY-aTj"/>
+                        <constraint firstAttribute="height" constant="15" id="LPI-Q9-G2X"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="10"/>
+                    <state key="normal" title="-20%" backgroundImage="ic_discount">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="jgh-Mi-qCf" firstAttribute="leading" secondItem="WZG-2s-f7c" secondAttribute="trailing" constant="5" id="0Kz-Sy-mSu"/>
+                <constraint firstItem="ALf-zR-2fP" firstAttribute="top" secondItem="hVs-FP-kZ0" secondAttribute="bottom" constant="8" id="145-eo-COw"/>
+                <constraint firstItem="iK4-9P-s3Z" firstAttribute="leading" secondItem="jgh-Mi-qCf" secondAttribute="trailing" constant="5" id="5PA-4O-S3s"/>
+                <constraint firstItem="J7r-mX-8KE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="8Kk-Xo-8G0"/>
+                <constraint firstItem="JZY-JF-MA2" firstAttribute="leading" secondItem="vtO-rV-LU1" secondAttribute="leading" id="CLt-Ry-yqN"/>
+                <constraint firstItem="iK4-9P-s3Z" firstAttribute="centerY" secondItem="jgh-Mi-qCf" secondAttribute="centerY" id="Dli-Rc-2Vh"/>
+                <constraint firstItem="hVs-FP-kZ0" firstAttribute="leading" secondItem="JZY-JF-MA2" secondAttribute="leading" id="Mtr-Ie-4bm"/>
+                <constraint firstItem="vtO-rV-LU1" firstAttribute="top" secondItem="J7r-mX-8KE" secondAttribute="bottom" constant="12" id="Uja-TN-Eor"/>
+                <constraint firstItem="hVs-FP-kZ0" firstAttribute="top" secondItem="JZY-JF-MA2" secondAttribute="bottom" constant="8" id="Uyv-cy-OZK"/>
+                <constraint firstItem="jgh-Mi-qCf" firstAttribute="centerY" secondItem="ALf-zR-2fP" secondAttribute="centerY" id="X1J-0X-zNa"/>
+                <constraint firstItem="J7r-mX-8KE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Yne-c1-XAv"/>
+                <constraint firstAttribute="trailing" secondItem="J7r-mX-8KE" secondAttribute="trailing" id="Ysm-sS-6Pk"/>
+                <constraint firstItem="ALf-zR-2fP" firstAttribute="leading" secondItem="hVs-FP-kZ0" secondAttribute="leading" id="ahA-Zp-ulV"/>
+                <constraint firstAttribute="trailing" secondItem="vtO-rV-LU1" secondAttribute="trailing" constant="12" id="bzY-nq-Gr8"/>
+                <constraint firstItem="vtO-rV-LU1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="eh2-VN-1jZ"/>
+                <constraint firstItem="ktd-SH-3qN" firstAttribute="leading" secondItem="JZY-JF-MA2" secondAttribute="trailing" constant="4" id="mN0-Hb-scg"/>
+                <constraint firstItem="JZY-JF-MA2" firstAttribute="top" secondItem="vtO-rV-LU1" secondAttribute="bottom" constant="4" id="mbA-4Z-FS9"/>
+                <constraint firstItem="WZG-2s-f7c" firstAttribute="top" secondItem="ALf-zR-2fP" secondAttribute="top" id="mfZ-3s-wLH"/>
+                <constraint firstItem="WZG-2s-f7c" firstAttribute="leading" secondItem="ALf-zR-2fP" secondAttribute="trailing" constant="2" id="s8s-ym-6cy"/>
+                <constraint firstItem="ktd-SH-3qN" firstAttribute="centerY" secondItem="JZY-JF-MA2" secondAttribute="centerY" id="uPo-C4-qSo"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-533.33333333333337" y="62.946428571428569"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_discount" width="32" height="15"/>
+    </resources>
+</document>
