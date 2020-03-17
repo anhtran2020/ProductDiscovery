@@ -8,7 +8,7 @@
 
 import Swinject
 import Domain
-import Network
+import NetworkModule
 
 struct ViewModelAssembly: Assembly {
     

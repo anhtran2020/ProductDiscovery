@@ -8,7 +8,7 @@
 
 import UIKit
 import Domain
-import Network
+import NetworkModule
 import RxSwift
 import RxCocoa
 import CRRefresh
