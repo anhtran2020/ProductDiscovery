@@ -23,9 +23,9 @@ public class Network {
     let configuration: NetworkConfiguration
     private var session: Session
     
-    init(configuration: NetworkConfiguration) {
+    init(configuration: NetworkConfiguration, session: Session = Alamofire.Session.default) {
         self.configuration = configuration
-        self.session = Session()
+        self.session = session
     }
 
     func request(with endpoint: EndpointConvertible) -> Single<DataRequest> {
@@ -34,7 +34,7 @@ public class Network {
     
     func request(with request: RequestConvertible) -> Single<DataRequest> {
         return Single.create { callback -> Disposable in
-            callback(.success(Alamofire.Session.default.request(request)))
+            callback(.success(self.session.request(request)))
             return Disposables.create()
         }
     }

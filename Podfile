@@ -39,3 +39,10 @@ target 'NetworkModule' do
   pod 'Alamofire', '~> 5.0.0-rc.3'
   rxswift
 end
+
+
+target 'DomainTests' do
+  rxswift
+  rxcocoa
+  rxdatasources
+end

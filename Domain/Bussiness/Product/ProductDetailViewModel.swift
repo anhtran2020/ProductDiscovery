@@ -14,7 +14,7 @@ public class ProductDetailViewModel {
     public var product: Product!
     
     private var disposeBag = DisposeBag()
-    public var relativeProducts = PublishSubject<[Product]>()
+    public var relativeProducts = BehaviorSubject<[Product]>(value: [])
     public var productDetail = PublishSubject<Product>()
     public var reloadingActivity = PublishSubject<Bool>()
     public var errorsTracker = PublishSubject<DomainError>()
@@ -64,10 +64,10 @@ public class ProductDetailViewModel {
     
     public func minusQuantity() {
         let allQuantity = (quantity.allValue ?? 0) - 1
-        if allQuantity > 0 {
-            quantity.onNext(allQuantity - 1)
+        if allQuantity >= 0 {
+            quantity.onNext(allQuantity)
+            totalPrice.onNext(Double(allQuantity) * product.price.supplierSalePrice)
         }
-        totalPrice.onNext(Double(allQuantity) * product.price.supplierSalePrice)
     }
 }
 

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NetworkConfiguration {
+public class NetworkConfiguration {
     let baseURL: URL
     
     init(baseURL: URL) {

@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import NetworkModule
 
 class NetworkModuleTests: XCTestCase {
 

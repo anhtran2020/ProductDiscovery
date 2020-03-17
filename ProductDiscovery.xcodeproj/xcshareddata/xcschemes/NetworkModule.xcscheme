@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0C49393F241BD01000C70A6A"
-               BuildableName = "ProductDiscovery.app"
-               BlueprintName = "ProductDiscovery"
+               BlueprintIdentifier = "0C49399A241BD02F00C70A6A"
+               BuildableName = "NetworkModule.framework"
+               BlueprintName = "NetworkModule"
                ReferencedContainer = "container:ProductDiscovery.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,39 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0C49397F241BD02200C70A6A"
-               BuildableName = "DomainTests.xctest"
-               BlueprintName = "DomainTests"
-               ReferencedContainer = "container:ProductDiscovery.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "0C4939A2241BD02F00C70A6A"
                BuildableName = "NetworkModuleTests.xctest"
                BlueprintName = "NetworkModuleTests"
-               ReferencedContainer = "container:ProductDiscovery.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0C493955241BD01600C70A6A"
-               BuildableName = "ProductDiscoveryTests.xctest"
-               BlueprintName = "ProductDiscoveryTests"
-               ReferencedContainer = "container:ProductDiscovery.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0C493960241BD01600C70A6A"
-               BuildableName = "ProductDiscoveryUITests.xctest"
-               BlueprintName = "ProductDiscoveryUITests"
                ReferencedContainer = "container:ProductDiscovery.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -80,33 +50,22 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0C49393F241BD01000C70A6A"
-            BuildableName = "ProductDiscovery.app"
-            BlueprintName = "ProductDiscovery"
-            ReferencedContainer = "container:ProductDiscovery.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Development"
+      buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0C49393F241BD01000C70A6A"
-            BuildableName = "ProductDiscovery.app"
-            BlueprintName = "ProductDiscovery"
+            BlueprintIdentifier = "0C49399A241BD02F00C70A6A"
+            BuildableName = "NetworkModule.framework"
+            BlueprintName = "NetworkModule"
             ReferencedContainer = "container:ProductDiscovery.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Development">

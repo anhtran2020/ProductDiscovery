@@ -12,7 +12,7 @@ import RxCocoa
 public class SearchViewModel {
     private var service: ProductServiceType!
     private var disposeBag = DisposeBag()
-    private var pageNumber = 1
+    var pageNumber = 1
     
     public var products = BehaviorSubject<[Product]>(value: [])
     public var reloadingActivity = PublishSubject<Bool>()
