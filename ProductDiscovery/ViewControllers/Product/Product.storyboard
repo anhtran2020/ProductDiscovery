@@ -708,6 +708,7 @@
                         <outlet property="productRelativeView" destination="uBt-md-wDL" id="Xo5-O6-ppG"/>
                         <outlet property="productRelativeViewHeightConstraint" destination="5W6-7K-ZUz" id="FMw-XD-kZ4"/>
                         <outlet property="quantityLabel" destination="Fc8-6b-hPL" id="EYx-di-xKr"/>
+                        <outlet property="scrollView" destination="eUr-9l-aWp" id="aX9-cS-Xh4"/>
                         <outlet property="topQuantityLabel" destination="Cjt-nv-9sN" id="TL0-pj-QCp"/>
                         <outlet property="totalPriceLabel" destination="wKK-rR-hK3" id="sqc-ci-ih7"/>
                     </connections>

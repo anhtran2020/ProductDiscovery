@@ -19,6 +19,7 @@ class ProductDetailViewController: BaseViewController {
     @IBOutlet weak var topQuantityLabel: UILabel!
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var quantityLabel: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var productHeaderView: ProductDetailHeaderView!
     @IBOutlet weak var attributeGroupView: ProductAttributeView!
     @IBOutlet weak var productRelativeView: ProductRelativeView!
@@ -76,6 +77,18 @@ class ProductDetailViewController: BaseViewController {
     @IBAction func minusButtonTapped(_ sender: Any) {
         viewModel.minusQuantity()
     }
+    
+    private func expandAttributeViewAnimation() {
+        UIView.animate(withDuration: 0.3, animations: { [weak self] in
+            self?.view.layoutIfNeeded()
+        }, completion: { [weak self] _ in
+            self?.autoScrollToAttributeViewIfNeed()
+        })
+    }
+    
+    private func autoScrollToAttributeViewIfNeed() {
+        scrollView.scrollRectToVisible(attributeGroupView.frame, animated: true)
+    }
 }
 
 extension ProductDetailViewController {
@@ -84,7 +97,7 @@ extension ProductDetailViewController {
         return Binder(self) { (target, expand) in
             target.attributeViewHeightConstraint.constant = expand.0
             if expand.1 {
-                UIView.animate(withDuration: 0.5) { target.view.layoutIfNeeded() }
+                target.expandAttributeViewAnimation()
             }
         }
     }
