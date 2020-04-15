@@ -27,6 +27,8 @@ extension DomainError: LocalizedError {
             return "Có lỗi xẩy ra, vui lòng thử lại"
         case .lostInternetConnection:
             return "Không có kết nối internet"
+        case .serverFailure:
+            return "Server failure"
         }
     }
 }

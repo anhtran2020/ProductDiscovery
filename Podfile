@@ -4,6 +4,7 @@ use_frameworks!
 
 def rxswift
 	pod 'RxSwift', '~> 5'
+  pod 'NSObject+Rx'
 end
 
 def rxcocoa
@@ -12,6 +13,10 @@ end
 
 def rxdatasources
   pod 'RxDataSources'
+end
+
+def swiftyjson
+  pod 'SwiftyJSON', '~> 4.0'
 end
 
 target 'ProductDiscovery' do
@@ -33,11 +38,13 @@ target 'Domain' do
   rxswift
   rxcocoa
   rxdatasources
+  swiftyjson
 end
 
 target 'NetworkModule' do
   pod 'Alamofire', '~> 5.0.0-rc.3'
   rxswift
+  swiftyjson
 end
 
 

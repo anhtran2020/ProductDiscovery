@@ -36,4 +36,37 @@ extension PrimitiveSequenceType where Element: DataRequest, Trait == SingleTrait
             }
         }
     }
+    
+    func validate() -> Single<DataRequest> {
+        return map { request -> DataRequest in
+            request.validate { (_, response, data) -> DataRequest.ValidationResult in
+                switch response.statusCode {
+                case 200..<300:
+                    return .success(())
+                case 401:
+                    return .failure(NetworkError.tokenExpired)
+                default:
+                    return .failure(NetworkError.serverFailure)
+                }
+            }
+            return request
+        }
+    }
+    
+    func responseParser<T: NetworkParsableType>(of type: T.Type = T.self) -> Single<T> {
+        return flatMap { request -> Single<T> in
+            return Single.create { single -> Disposable in
+                if let data = request.data {
+                    single(.success(T(data: data)))
+                } else {
+                    single(.error(NetworkError.noResponseDataToParse))
+                }
+                
+                request.resume()
+                return Disposables.create {
+                    request.cancel()
+                }
+            }
+        }
+    }
 }

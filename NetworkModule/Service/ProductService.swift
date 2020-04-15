@@ -20,15 +20,17 @@ public struct ProductService {
 extension ProductService: ProductServiceType {
     
     public func fetchProducts(query: String, page: Int) -> Single<[Product]> {
-        return network
+        return network.rx
             .request(with: Router.products(query: query, page: page))
-            .responseDecodable(of: [ProductModel].self, keyPath: "result.products")
-            .mapToDomain()
+            .validate()
+            .responseParser(of: ProductObject.self)
+            .map { $0.products.asDomain() }
     }
     
     public func fetchProductDetail(sku: String) -> Single<Product> {
-        return network
+        return network.rx
             .request(with: Router.productDetail(sku: sku))
+            .validate()
             .responseDecodable(of: ProductDetailModel.self, keyPath: "result.product")
             .mapToDomain()
     }

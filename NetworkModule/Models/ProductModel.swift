@@ -7,6 +7,21 @@
 //
 
 import Domain
+import SwiftyJSON
+
+protocol NetworkParsableType {
+    init(data: Any)
+}
+
+struct ProductObject: NetworkParsableType {
+    let sku: String
+    let products: [ProductModel]!
+    
+    init(data: Any) {
+        let json = JSON(data)
+        sku = json["sku"].stringValue
+    }
+}
 
 struct ProductModel: Decodable {
     let sku: String

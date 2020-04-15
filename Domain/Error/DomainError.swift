@@ -9,6 +9,7 @@
 public enum DomainError: Error {
     case other(error: Error)
     case lostInternetConnection
+    case serverFailure
 }
 
 //MARK: - Mapping

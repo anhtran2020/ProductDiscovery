@@ -16,6 +16,9 @@ enum NetworkError: Error {
     }
     
     case responseSerializationFailed(reason: ResponseSerializationFailureReason)
+    case tokenExpired
+    case serverFailure
+    case noResponseDataToParse
 }
 
 extension NetworkError: LocalizedError {
@@ -23,6 +26,12 @@ extension NetworkError: LocalizedError {
         switch self {
         case .responseSerializationFailed(let reason):
             return reason.localizedDescription
+        case .tokenExpired:
+            return "Token expired"
+        case .serverFailure:
+            return "Server failure"
+        case .noResponseDataToParse:
+            return "No response data to parse"
         }
     }
 }
@@ -46,7 +55,12 @@ extension NetworkError.ResponseSerializationFailureReason {
 
 extension NetworkError: DomainErrorConvertible {
     func asDomainError() -> DomainError {
-        return .other(error: self)
+        switch self {
+        case .serverFailure:
+            return DomainError.serverFailure
+        default:
+            return .other(error: self)
+        }
     }
 }
 
